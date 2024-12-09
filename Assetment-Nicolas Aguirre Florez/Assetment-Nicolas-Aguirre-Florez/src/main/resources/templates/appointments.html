@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Citas</title>
+</head>
+<body>
+<h1>Gestión de Citas</h1>
+<form th:action="@{/appointments}" method="post">
+    <input type="text" name="reason" placeholder="Motivo" required>
+    <input type="datetime-local" name="dateTime" required>
+    <select name="doctor" required>
+        <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}"></option>
+    </select>
+    <button type="submit">Agendar Cita</button>
+</form>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Motivo</th>
+        <th>Fecha/Hora</th>
+    </tr>
+    <tr th:each="appointment : ${appointments}">
+        <td th:text="${appointment.id}"></td>
+        <td th:text="${appointment.reason}"></td>
+        <td th:text="${appointment.dateTime}"></td>
+    </tr>
+</table>
+</body>
+</html>
